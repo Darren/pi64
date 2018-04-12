@@ -51,12 +51,12 @@ func installDebian() error {
 		Components: []string{"main", "contrib", "non-free"},
 		Packages:   packages,
 	}
-	if err := multistrap.Run(multistrapOpts);err != nil {
+	if err := multistrap.Run(multistrapOpts); err != nil {
 		return err
 	}
 
 	fmt.Fprintln(os.Stderr, "   Cleaning APT...")
-	if err := .Command("cp", "/usr/bin/qemu-aarch64-static", rootDir+"/usr/bin/qemu-aarch64-static").Run(); err != nil {
+	if err := exec.Command("cp", "/usr/bin/qemu-aarch64-static", rootDir+"/usr/bin/qemu-aarch64-static").Run(); err != nil {
 		return err
 	}
 
@@ -81,8 +81,8 @@ deb-src http://deb.debian.org/debian stretch main contrib non-free
 deb http://deb.debian.org/debian stretch-updates main contrib non-free
 deb-src http://deb.debian.org/debian stretch-updates main contrib non-free
 
-deb http://security.debian.org/debian-security/ stretch/updates main contrib non-free
-deb-src http://security.debian.org/debian-security/ stretch/updates main contrib non-free
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb-src http://security.debian.org/ stretch/updates main contrib non-free
 `)
 
 	if err := ioutil.WriteFile("/etc/apt/sources.list", aptSources[1:], 0644); err != nil {
