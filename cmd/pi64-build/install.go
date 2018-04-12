@@ -39,7 +39,7 @@ func installDebian() error {
 	if version == Lite {
 		packages = append(packages, litePackages...)
 	} else if version == Desktop {
-		packages = append(packages, desktopPackages)
+		packages = append(packages, desktopPackages...)
 	}
 	if debug {
 		packages = append(packages, debugPackages...)
