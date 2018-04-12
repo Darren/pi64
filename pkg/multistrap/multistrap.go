@@ -23,7 +23,6 @@ unpack=true
 allowrecommends=true
 debootstrap=Debian
 aptsources=Debian
---allow-unauthenticated
 
 [Debian]
 source=http://deb.debian.org/debian
