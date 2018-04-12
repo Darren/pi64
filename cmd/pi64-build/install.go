@@ -51,13 +51,12 @@ func installDebian() error {
 		Components: []string{"main", "contrib", "non-free"},
 		Packages:   packages,
 	}
-	if err := multistrap.Run(multistrapOpts);
-	err != nil {
+	if err := multistrap.Run(multistrapOpts);err != nil {
 		return err
 	}
 
 	fmt.Fprintln(os.Stderr, "   Cleaning APT...")
-	if err := exec.Command("cp", "/usr/bin/qemu-aarch64-static", rootDir+"/usr/bin/qemu-aarch64-static").Run(); err != nil {
+	if err := .Command("cp", "/usr/bin/qemu-aarch64-static", rootDir+"/usr/bin/qemu-aarch64-static").Run(); err != nil {
 		return err
 	}
 
