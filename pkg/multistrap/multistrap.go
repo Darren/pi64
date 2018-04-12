@@ -25,7 +25,7 @@ debootstrap=Debian
 aptsources=Debian
 
 [Debian]
-source=http://ftp.uk.debian.org/debian
+source=http://deb.debian.org/debian
 keyring=debian-archive-keyring
 components=` + strings.Join(options.Components, " ") + `
 suite=` + options.Suite + `
