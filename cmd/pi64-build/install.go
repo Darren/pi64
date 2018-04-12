@@ -75,11 +75,11 @@ func installDebian() error {
 	}
 
 	aptSources := []byte(`
-deb https://deb.debian.org/debian/ stretch main contrib non-free
-deb-src https://deb.debian.org/debian/ stretch main contrib non-free
+deb http://ftp.uk.debian.org/debian stretch main contrib non-free
+deb-src http://ftp.uk.debian.org/debian stretch main contrib non-free
 
-deb https://deb.debian.org/debian/ stretch-updates main contrib non-free
-deb-src https://deb.debian.org/debian/ stretch-updates main contrib non-free
+deb http://ftp.uk.debian.org/debian stretch-updates main contrib non-free
+deb-src http://ftp.uk.debian.org/debian stretch-updates main contrib non-free
 
 deb http://security.debian.org/ stretch/updates main contrib non-free
 deb-src http://security.debian.org/ stretch/updates main contrib non-free
