@@ -15,7 +15,8 @@ type Options struct {
 
 func Run(options Options) error {
 	cmd := exec.Command("multistrap", "-a", options.Arch, "-d", options.Directory, "-f", "/dev/stdin")
-
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 	cmd.Stdin = strings.NewReader(`
 [General]
 noauth=true
