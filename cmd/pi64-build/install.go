@@ -51,10 +51,7 @@ func installDebian() error {
 		Components: []string{"main", "contrib", "non-free"},
 		Packages:   packages,
 	}
-	if err := multistrap.Run(multistrapOpts);
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err != nil {
+	if err := multistrap.Run(multistrapOpts);err != nil {
 		return err
 	}
 
