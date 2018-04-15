@@ -35,6 +35,7 @@ func createImage() error {
 	}
 
 	fmt.Fprintln(os.Stderr, "   Mapping partitions...")
+	checkError(image.MapPartitions())
 
 	fmt.Fprintln(os.Stderr, "   Creating filesystems...")
 	if err := bootPart.MkFs(diskutil.FsVFAT, "-n", "boot", "-F", "32"); err != nil {
