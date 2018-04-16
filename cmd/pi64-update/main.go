@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/bamarni/pi64/pkg/pi64"
-	"github.com/cheggaaa/pb"
+	"gopkg.in/cheggaaa/pb.v1"
 	"golang.org/x/crypto/openpgp"
 )
 
