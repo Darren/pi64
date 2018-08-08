@@ -43,7 +43,11 @@ cd ..
 GOOS=linux GOARCH=arm64 go build -o ./linux/usr/bin/pi64-update github.com/bamarni/pi64/cmd/pi64-update
 GOOS=linux GOARCH=arm64 go build -o ./linux/usr/bin/pi64-config github.com/bamarni/pi64/cmd/pi64-config
 
-cp -R /opt/vc linux/opt/
-mv linux/opt/vc/bin/* linux/usr/bin/
+cp -R firmware/opt/vc linux/opt/
+
+for f in linux/opt/vc/bin/*; do
+	n=$(basename $f)
+	ln -s /opt/vc/bin/$n linux/usr/bin/$n
+done
 
 cp -R firmware/boot/* linux/boot
