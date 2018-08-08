@@ -12,7 +12,7 @@ cp arch/arm64/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dtb ../linux/boot
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=$(dirname $PWD)/linux modules_install
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_HDR_PATH=$(dirname $PWD)/linux/usr headers_install
 
-kernelversion=$(make -s kernelversion)-pi64+
+kernelversion=$(make -s kernelversion)-v8+
 hdr_dir=linux-headers-${kernelversion}
 
 echo "./.config" >../hdr_files
