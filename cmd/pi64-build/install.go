@@ -6,10 +6,8 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
-	"time"
 
 	"github.com/bamarni/pi64/pkg/multistrap"
-	"github.com/bamarni/pi64/pkg/pi64"
 	"github.com/bamarni/pi64/pkg/util"
 )
 
@@ -115,7 +113,7 @@ proc            /proc           proc    defaults          0       0
 	}
 
 	// This is just in case debugging is needed, it will be overriden later on during installation
-	if err := ioutil.WriteFile("/etc/resolv.conf", []byte("8.8.8.8"), 0644); err != nil {
+	if err := ioutil.WriteFile("/etc/resolv.conf", []byte("nameserver 8.8.8.8\n"), 0644); err != nil {
 		return err
 	}
 
@@ -138,13 +136,20 @@ iface wlan0 inet manual
 		return err
 	}
 
-	fmt.Fprintln(os.Stderr, "   Writing metadata...")
-	metadata := pi64.Metadata{
-		Version: time.Now().Format("2006-01-02"),
-	}
-	if err := pi64.WriteMetadata(metadata); err != nil {
+	fmt.Fprintln(os.Stderr, "   Configuring ld.so.conf...")
+	if err := ioutil.WriteFile("/etc/ld.so.conf.d/00-vmcs.conf", []byte("/opt/vc/lib\n"), 0644); err != nil {
 		return err
 	}
+
+	/*
+		fmt.Fprintln(os.Stderr, "   Writing metadata...")
+		metadata := pi64.Metadata{
+			Version: time.Now().Format("2006-01-02"),
+		}
+		if err := pi64.WriteMetadata(metadata); err != nil {
+			return err
+		}
+	*/
 
 	return os.Remove("/usr/bin/qemu-aarch64-static")
 }
