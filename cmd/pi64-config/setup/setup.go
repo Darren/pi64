@@ -26,6 +26,9 @@ func Finish() {
 	fmt.Println("Expanding root partition...")
 	checkError(expandRootPartition())
 
+	fmt.Println("Configuring kernel modules...")
+	checkError(configureModules())
+
 	fmt.Println("Configuring packages (this takes a few minutes)...")
 	checkError(configurePackages())
 
@@ -110,6 +113,10 @@ func expandRootPartition() error {
 		return fmt.Errorf("couldn't expand root partition : %s\n\n%s", err, out)
 	}
 	return runCommand("/sbin/resize2fs", "/dev/mmcblk0p2")
+}
+
+func configureModules() error {
+	return runCommand("/sbin/depmod", "-a")
 }
 
 func configurePackages() error {
