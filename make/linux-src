@@ -8,8 +8,6 @@ git clone --depth=1 -b rpi-4.17.y https://github.com/raspberrypi/linux.git linux
 
 cd linux-src
 
-cp ../../make/kernel-config.txt ./.config
-
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcmrpi3_defconfig
 
 make -j $(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
