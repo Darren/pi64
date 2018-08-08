@@ -94,6 +94,11 @@ deb-src http://security.debian.org/ stretch/updates main contrib non-free
 		return err
 	}
 
+	// why amd64 is added??
+	if err := exec.Command("dpkg", "--remove-architecture", "amd64").Run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
+
 	fmt.Fprintln(os.Stderr, "   Configuring filesystems in /etc/fstab...")
 	fstab := []byte(`
 proc            /proc           proc    defaults          0       0

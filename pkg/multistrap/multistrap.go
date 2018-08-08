@@ -23,6 +23,14 @@ unpack=true
 allowrecommends=true
 debootstrap=Debian
 aptsources=Debian
+multiarch=arm64 armhf
+
+[Foreign]
+packages=libc6 libgcc1
+architecture=armhf
+source=http://mirrors.tuna.tsinghua.edu.cn/debian/
+keyring=debian-archive-keyring
+suite=` + options.Suite + `
 
 [Debian]
 source=http://mirrors.tuna.tsinghua.edu.cn/debian/
